@@ -1,0 +1,16 @@
+def convert_temperature(temperature, unit):
+    # Converts temperature between Celsius and Fahrenheit.
+    if unit.upper() == 'C':  
+        # Celsius to Fahrenheit
+        return round((temperature * 9/5) + 32, 2)
+    elif unit.upper() == 'F': 
+        # Fahrenheit to Celsius
+        return round((temperature - 32) * 5/9, 2)
+    else:
+        return "Invalid unit! Please use 'C' or 'F'."
+# --- User Input Part ---
+temp = float(input("Enter the temperature value: "))
+unit = input("Enter the unit (C/F): ")
+
+result = convert_temperature(temp, unit)
+print("Converted temperature:", result)
