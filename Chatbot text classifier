@@ -1,0 +1,30 @@
+
+import datetime
+
+chat_history = {}
+
+while True:
+    user_input = input("You: ").strip()  
+
+    if user_input.lower() in ["exit", "quit"]:
+        print("Exiting chatbot...")
+        break
+
+    # input
+    if user_input.endswith("?"):
+        category = "Question"
+    elif user_input.lower().startswith(("please", "do", "open", "run", "start", "make", "go")):
+        category = "Command"
+    else:
+        category = "Statement"
+
+    # store in dictionary 
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    chat_history[timestamp] = {"text": user_input, "type": category}
+
+    print(f"Bot: That looks like a {category}.")
+
+# chat history/
+print("\nChat History:")
+for time, entry in chat_history.items():
+    print(f"[{time}] {entry['type']}: {entry['text']}") 
