@@ -1,0 +1,27 @@
+# Predefined questions
+questions = [
+    "What is your name?",
+    "How are you feeling today?",
+    "Do you like today's weather?"
+]
+
+for q in questions:
+    user_input = input(f"Bot: {q}\nYou: ").strip().lower() 
+
+    # If-else responses
+    if "name" in q.lower():
+        bot_reply = f"Nice to meet you, {user_input.capitalize()}!"
+    elif "feeling" in q.lower():
+        if user_input in ["good", "great", "fine", "happy"]:
+            bot_reply = "That's awesome to hear!"
+        else:
+            bot_reply = "I hope things get better soon."
+    elif "weather" in q.lower():
+        if user_input in ["yes", "yeah", "yup", "of course"]:
+            bot_reply = "Me too! It's amazing outside."
+        else:
+            bot_reply = "That's okay, everyone has their own preferences."
+    else:
+        bot_reply = "Thanks for sharing!"
+
+    print(f"Bot: {bot_reply}")
