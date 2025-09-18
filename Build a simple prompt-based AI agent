@@ -1,0 +1,54 @@
+
+def categorize_prompt(prompt):
+    """Categorize the user input based on keywords."""
+    prompt = prompt.lower()
+    if "summarize" in prompt:
+        return "Summarization"
+    elif "code" in prompt or "python" in prompt or "program" in prompt:
+        return "Code Help"
+    elif "grammar" in prompt or "correct" in prompt:
+        return "Grammar Check"
+    else:
+        return "General Chat"
+
+def generate_response(category, prompt):
+    """Generate a simulated AI response based on the category."""
+    if category == "Summarization":
+        return "Summary: " + " ".join(prompt.split()[:6]) + "..."
+    elif category == "Code Help":
+        # Single-line string with explicit \n, avoids multiline parentheses
+        return "Here's a sample Python code:\ndef factorial(n):\n    return 1 if n==0 else n*factorial(n-1)"
+    elif category == "Grammar Check":
+        lower = prompt.lower()
+        if "he go" in lower:
+            return "Corrected: He went to school yesterday."
+        else:
+            # simple simulated correction
+            return "Corrected sentence (simulated): " + prompt.replace(" is ", " was ")
+    else:  # General Chat
+        return "I'm just a simple AI simulation, but I hear you!"
+
+def main():
+    print("=== Prompt Companion Tool ===")
+    print("Type 'exit' to quit.\n")
+
+    while True:
+        try:
+            user_prompt = input(">>> Enter your prompt: ")
+        except (EOFError, KeyboardInterrupt):
+            print("\nGoodbye!")
+            break
+
+        if user_prompt.strip().lower() == "exit":
+            print("Goodbye!")
+            break
+
+        category = categorize_prompt(user_prompt)
+        response = generate_response(category, user_prompt)
+
+        print(f"[Category: {category}]")
+        print(response)
+        print("-" * 40)
+
+if __name__ == "__main__":
+    main()
